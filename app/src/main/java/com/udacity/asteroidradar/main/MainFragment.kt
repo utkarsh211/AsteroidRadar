@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
@@ -27,13 +28,21 @@ class MainFragment : Fragment() {
                 .load(it.url)
                 .into(binding.activityMainImageOfTheDay)
         })
-//
-//        viewModel.asteroidsList.observe(viewLifecycleOwner, Observer {
-//            asteroidsList ->
-//            for(element in asteroidsList){
-//                Log.d("MainFragment", element.codename)
-//            }
-//        })
+        viewModel.asteroidsList.observe(viewLifecycleOwner, Observer {
+            asteroidsList ->
+            for(element in asteroidsList){
+                Log.d("MainFragment", element.codename)
+            }
+        })
+        binding.asteroidRecycler.adapter = AsteroidRecyclerAdapter(AsteroidRecyclerAdapter.OnClickListener{
+            viewModel.displayAsteroidDetails(it)
+        })
+        viewModel.navigateToSelectedAsteroid.observe(viewLifecycleOwner, Observer{
+            if(it!=null){
+                findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
+                viewModel.displayAsteroidDetailsComplete()
+            }
+        })
         return binding.root
 
     }
