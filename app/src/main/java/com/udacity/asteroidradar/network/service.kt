@@ -31,13 +31,13 @@ private val moshi = Moshi.Builder()
     .build()
 
 
-var interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-var client: OkHttpClient = OkHttpClient.Builder().addInterceptor { chain ->
-    val newRequest = chain.request().newBuilder()
-        .build()
-    chain.proceed(newRequest)
-}.addInterceptor(interceptor)
-    .build()
+//var interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+//var client: OkHttpClient = OkHttpClient.Builder().addInterceptor { chain ->
+//    val newRequest = chain.request().newBuilder()
+//        .build()
+//    chain.proceed(newRequest)
+//}.addInterceptor(interceptor)
+//    .build()
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))

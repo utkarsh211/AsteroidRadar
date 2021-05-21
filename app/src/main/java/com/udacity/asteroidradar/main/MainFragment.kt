@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
+import timber.log.Timber
 
 class MainFragment : Fragment() {
 
@@ -30,8 +31,8 @@ class MainFragment : Fragment() {
         })
         viewModel.asteroidsList.observe(viewLifecycleOwner, Observer {
             asteroidsList ->
-            for(element in asteroidsList){
-                Log.d("MainFragment", element.codename)
+            for(element in asteroidsList) {
+                Timber.d(element.codename)
             }
         })
         binding.asteroidRecycler.adapter = AsteroidRecyclerAdapter(AsteroidRecyclerAdapter.OnClickListener{
