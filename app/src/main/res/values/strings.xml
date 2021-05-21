@@ -19,4 +19,7 @@
     <string name="not_hazardous_asteroid_image">Not hazardous asteroid image</string>
     <string name="this_is_nasa_s_picture_of_day_showing_nothing_yet">This is NASA\'s picture of day, showing nothing yet</string>
     <string name="nasa_picture_of_day_content_description_format">NASA\'s picture of day: %s</string>
+    <string name="image_of_the_day_desc">This is an image that can be fetched using the Nasa API. The API returns a different image source every other day.</string>
+    <string name="hazardous_desc">An image that tells the user if the selected Asteroid is hazardous or not</string>
+    <string name="help_desc">Provides more information to the user about what exactly the \"Absolute Magnitude\" of the asteroid is</string>
 </resources>
