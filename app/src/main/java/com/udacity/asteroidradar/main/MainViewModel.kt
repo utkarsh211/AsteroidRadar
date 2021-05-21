@@ -23,15 +23,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         _navigateToSelectedAsteroid.value = null
     }
     init {
-        getPictureOfDay()
         viewModelScope.launch {
+            _pictureOfDay.value = mainRepository.getPictureOfDay()
             mainRepository.refreshAsteroids()
-        }
-    }
-    private fun getPictureOfDay() {
-        viewModelScope.launch {
-            val pictureOfDay = AsteroidRadarApi.retrofitService.getImageOfTheDay(API_KEY)
-            _pictureOfDay.value = pictureOfDay
         }
     }
     val asteroidsList = mainRepository.asteroids

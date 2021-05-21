@@ -12,7 +12,9 @@ import com.udacity.asteroidradar.domain.Asteroid
 class AsteroidRecyclerAdapter(private val onClickListener: OnClickListener): ListAdapter<Asteroid, AsteroidRecyclerAdapter.AsteroidViewHolder>(DiffCallback){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AsteroidViewHolder {
-       return AsteroidViewHolder(AsteroidItemBinding.inflate(LayoutInflater.from(parent.context)))
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = AsteroidItemBinding.inflate(layoutInflater, parent, false)
+        return AsteroidViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: AsteroidViewHolder, position: Int) {
@@ -27,10 +29,6 @@ class AsteroidRecyclerAdapter(private val onClickListener: OnClickListener): Lis
         fun bind(asteroid: Asteroid) {
             binding.asteroid = asteroid
             binding.executePendingBindings()
-//            when(asteroid.isPotentiallyHazardous){
-//                true -> binding.hazImage.setImageResource(R.drawable.ic_status_potentially_hazardous)
-//                else -> binding.hazImage.setImageResource( R.drawable.ic_status_normal)
-//            }
         }
     }
     companion object DiffCallback: DiffUtil.ItemCallback<Asteroid>() {
