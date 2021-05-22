@@ -1,6 +1,5 @@
 package com.udacity.asteroidradar.main
 
-import android.graphics.Picture
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.udacity.asteroidradar.Constants
@@ -14,10 +13,24 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 
 class MainRepository(private val database: AsteroidsDatabase) {
+    private val todayDate: String = getNextSevenDaysFormattedDates()[0]
 
-    val asteroids: LiveData<List<Asteroid>> = Transformations.map(database.asteroidDao.getAsteroids()){
-        it.asDomainModel()
+    fun getAsteroidsList(filterValue: String): LiveData<List<Asteroid>> {
+        return when (filterValue) {
+            "all" -> Transformations.map(database.asteroidDao.getAsteroids()) {
+                it.asDomainModel()
+            }
+            "today" -> Transformations.map(database.asteroidDao.getTodayAsteroids(todayDate)) {
+                it.asDomainModel()
+            }
+            else -> Transformations.map(database.asteroidDao.getAsteroids()) {
+                it.asDomainModel()
+            }
+        }
     }
+//    val asteroids: LiveData<List<Asteroid>> = Transformations.map(database.asteroidDao.getAsteroids()){
+//        it.asDomainModel()
+//    }
     suspend fun refreshAsteroids() {
         withContext(Dispatchers.IO) {
 

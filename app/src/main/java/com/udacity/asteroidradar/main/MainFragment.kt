@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
+import com.udacity.asteroidradar.network.AsteroidApiFilter
 import timber.log.Timber
 
 class MainFragment : Fragment() {
@@ -29,12 +30,7 @@ class MainFragment : Fragment() {
                 .load(it.url)
                 .into(binding.activityMainImageOfTheDay)
         })
-        viewModel.asteroidsList.observe(viewLifecycleOwner, Observer {
-            asteroidsList ->
-            for(element in asteroidsList) {
-                Timber.d(element.codename)
-            }
-        })
+
         binding.asteroidRecycler.adapter = AsteroidRecyclerAdapter(AsteroidRecyclerAdapter.OnClickListener{
             viewModel.displayAsteroidDetails(it)
         })
@@ -42,6 +38,12 @@ class MainFragment : Fragment() {
             if(it!=null){
                 findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
                 viewModel.displayAsteroidDetailsComplete()
+            }
+        })
+
+        viewModel.asteroidsList.observe(viewLifecycleOwner, Observer {
+            for(asteroid in it){
+                Log.d("MainFragment",asteroid.closeApproachDate)
             }
         })
         return binding.root
@@ -54,6 +56,13 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        viewModel.updateFilter(
+            when(item.itemId){
+                R.id.show_all_menu -> AsteroidApiFilter.SHOW_ALL.value
+                R.id.show_rent_menu -> AsteroidApiFilter.SHOW_TODAY.value
+                else-> AsteroidApiFilter.SHOW_SAVED.value
+            }
+        )
         return true
     }
 }

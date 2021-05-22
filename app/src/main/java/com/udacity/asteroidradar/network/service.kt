@@ -16,6 +16,9 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+enum class AsteroidApiFilter(val value: String) {
+    SHOW_ALL("all"), SHOW_TODAY("today"), SHOW_SAVED("saved")
+}
 
 const val API_KEY = "hEiiLwA47o2AQXIS0KmAyyltjFr1yHtShcW9rGbP"
 interface  AsteroidRadarService {
