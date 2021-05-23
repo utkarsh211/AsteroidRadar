@@ -20,7 +20,7 @@ enum class AsteroidApiFilter(val value: String) {
     SHOW_ALL("all"), SHOW_TODAY("today"), SHOW_SAVED("saved")
 }
 
-const val API_KEY = "hEiiLwA47o2AQXIS0KmAyyltjFr1yHtShcW9rGbP"
+const val API_KEY = ""
 interface  AsteroidRadarService {
     @GET("planetary/apod")
     suspend fun getImageOfTheDay(@Query("api_key")apiKey: String): PictureOfDay
