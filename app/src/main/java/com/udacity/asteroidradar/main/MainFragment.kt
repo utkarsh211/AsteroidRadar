@@ -41,11 +41,6 @@ class MainFragment : Fragment() {
             }
         })
 
-        viewModel.asteroidsList.observe(viewLifecycleOwner, Observer {
-            for(asteroid in it){
-                Log.d("MainFragment",asteroid.closeApproachDate)
-            }
-        })
         return binding.root
 
     }
