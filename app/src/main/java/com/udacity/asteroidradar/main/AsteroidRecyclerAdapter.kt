@@ -15,6 +15,7 @@ class AsteroidRecyclerAdapter(private val onClickListener: OnClickListener): Lis
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = AsteroidItemBinding.inflate(layoutInflater, parent, false)
         return AsteroidViewHolder(binding)
+
     }
 
     override fun onBindViewHolder(holder: AsteroidViewHolder, position: Int) {

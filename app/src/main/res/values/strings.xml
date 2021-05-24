@@ -22,5 +22,7 @@
     <string name="image_of_the_day_desc">This is the image of the day that is fetched from a Nasa API end-point that sends a different image everyday </string>
     <string name="image_of_the_day_text_desc">This is an image that can be fetched using the Nasa API. The API returns a different image source every other day.</string>
     <string name="hazardous_desc">An image that tells the user if the selected Asteroid is hazardous or not</string>
-    <string name="help_desc">Provides more information to the user about what exactly the \"Absolute Magnitude\" of the asteroid is</string>
+    <string name = "asteroid_status_haz">This is a potentially hazardous asteroid</string>
+    <string name = "asteroid_status_non_haz">This asteroid is not potentially hazardous</string>
+    <string name="help_desc">This is a help button that provides more information to the user about what exactly an astronomical unit to describe the \"Absolute Magnitude\" of the asteroid is</string>
 </resources>
